@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/javascript">
+        /* setTimeout(() => {
+            console.log("timeout")
+        }, 0) */
+
+        setTimeout(()=>{
+            console.log("timeout1")
+            Promise.resolve().then(data=>{
+                console.log('then1')
+            })
+        },0)
+
+        Promise.resolve().then(data=>{
+            console.log("then2");
+            setTimeout(() => {
+                console.log("timeout2")
+            },0)
+        })
+
+        // 会取出一个宏任务去放到当前浏览器的执行环境中
+        // 当前执行环境都执行完毕  会先去清空微任务
+        
+    </script>
+</body>
+
+</html>

@@ -1,7 +1,12 @@
 {
-  "name": "$name$",
-  "version": "$version$",
-  "dependencies": {
-    $END$
-  }
+  "name": "hf-michael",
+  "version": "1.0.0",
+  "main": "a.js",
+  "scripts": {
+    "dev": "export a=1&node a.js --color red"
+  },
+  "bin": {
+    "hf": "./a.js"
+  },
+  "dependencies": {}
 }

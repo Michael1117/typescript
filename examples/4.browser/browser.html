@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- js主线程单线程的 ajax  setTimeout 在浏览器中会多开线程 -->
+    <!-- 代码从上到下执行 会先执行同步 再执行异步 -->
+    <!-- 宏任务(慢) setTimeout 微任务(快) Promise.then 异步任务 -->
+    <!-- vscode live server 启动本地服务 -->
+    <!-- setImmediate 宏任务 ie下生效 -->
+    <!-- MutationObserver 微任务 -->
+    <!-- MessageChannel 微任务 -->
+    <script type="text/javascript">
+        /* setImmediate(()=>{
+            console.log(33)
+        }) */
+        setImmediate(function(){
+            console.log(333)
+        })
+        setTimeout(()=>{
+            console.log('timeout')
+        }, 100)
+        
+        Promise.resolve().then(()=>{
+            console.log('promise')
+        })
+    </script>
+    
+</body>
+</html>

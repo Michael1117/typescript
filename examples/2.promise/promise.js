@@ -73,6 +73,8 @@ function resolvePromise(promise2, x ,resolve, reject) {     // 判断x 是不是
 }
 
 Promise.prototype.then = function(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : value => value;
+    onRejected = typeof onRejected === 'function' ? onRejected : err => {throw err};
     let self = this;
     // 调用then后需要再次 返回一个新的promise
     // 需要拿到当前then方法 成功或失败的返回值
@@ -135,4 +137,17 @@ Promise.prototype.then = function(onFulfilled, onRejected) {
     return promise2;
 
 }
+
+// 实现一个promise的延迟对象 defer
+Promise.defer = Promise.deferred = function(){
+    let dfd = {};
+    dfd.promise = new Promise((resolve, reject)=>{
+        dfd.resolve = resolve;
+        dfd.reject = reject;
+    })
+    return dfd;
+}
 module.exports = Promise;
+
+// npm i -g promises-aplus-tests
+// promises-aplus-tests promise.js

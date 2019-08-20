@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- js主线程单线程的 ajax  setTimeout 在浏览器中会多开线程 -->
+    <!-- 代码从上到下执行 会先执行同步 再执行异步 -->
+    <!-- 宏任务(慢) setTimeout 微任务(快) Promise.then 异步任务 -->
+    <!-- vscode live server 启动本地服务 -->
+    <!-- setImmediate 宏任务 ie下生效 -->
+    <!-- MutationObserver 微任务 -->
+    <!-- MessageChannel 宏任务 -->
+    <div id="app"></div>
+    <script type="text/javascript">
+        /* let app = document.getElementById("app")
+        let observer = new MutationObserver(function () {
+            console.log('节点已经更新')
+            console.log(app.children.length)
+        })
+
+        observer.observe(app, {
+            childList: true
+        })
+        for (let i = 0; i < 21; i++) {
+            app.appendChild(document.createElement("p"))
+        }
+
+        for (let i = 0; i < 20; i++) {
+            app.appendChild(document.createElement("span")) 
+        }*/
+
+        setTimeout(function(){
+            console.log("timeout")
+        },0)
+        
+        let channel = new MessageChannel();
+        channel.port1.postMessage("我爱你")
+
+        channel.port2.onmessage = function(e) {
+            console.log(e.data);
+            
+        }
+
+        /* Promise.resolve().then(() => {
+            console.log("then")
+        }) */
+
+        
+        console.log("hello");
+        
+    </script>
+
+</body>
+
+</html>
